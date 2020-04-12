@@ -6,4 +6,4 @@ api.get('/test', (ctx) => {
 });
 
 // 라우터를 내보냅니다.
-module.export = api;
+module.exports = api;
