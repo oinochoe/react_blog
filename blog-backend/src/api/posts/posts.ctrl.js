@@ -22,3 +22,11 @@ exports.write = (ctx) => {
     posts.push(post); // posts 배열 객체에 객체를 추가로 담아서 JSON 형태로 만듭니다.
     ctx.body = post; // body로 되돌려줍니다.
 };
+
+/* 포스트 목록 조회
+ GET /api/posts
+ */
+
+exports.list = (ctx) => {
+    ctx.body = posts; // 리스트 조회는 그냥 posts를 불러온다. 현재 posts에 쌓인 목록만 보여주면 되니까..
+};
