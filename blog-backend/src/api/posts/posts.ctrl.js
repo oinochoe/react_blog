@@ -1,4 +1,4 @@
-import Post from '../../models/posts';
+import Post from '../../models/post';
 
 /*
  * POST /api/posts
