@@ -1,5 +1,5 @@
 import Post from '../../models/post';
-import { mongoose } from 'mongoose';
+import mongoose from 'mongoose';
 
 // 미들웨어 작성
 const { ObjectId } = mongoose.Types;
