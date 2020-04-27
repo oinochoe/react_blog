@@ -95,6 +95,21 @@ export const remove = async (ctx) => {
 
 export const update = async (ctx) => {
     const { id } = ctx.params;
+    const schema = Joi.object().keys({
+        // write에서 사용한 schema와 비슷하지만 required가 없습니다.
+        title: Joi.string(), // requred가 있으면 필수 항목
+        body: Joi.string(),
+        tags: Joi.array().items(Joi.string()), // 문자열로 이루어진 배열
+    });
+
+    // 검증하고 나서 검증 실패인 경우 에러
+    const result = Joi.validate(ctx.request.body, schema);
+    if (result.error) {
+        ctx.status = 400; // Bad Request
+        ctx.body = result.error;
+        return;
+    }
+
     try {
         const post = await Post.findByIdAndUpdate(id, ctx.request.body, {
             new: true, // 이 값을 설정하면 업데이트된 데이터를 반환
