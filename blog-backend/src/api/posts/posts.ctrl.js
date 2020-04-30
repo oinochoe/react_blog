@@ -72,6 +72,7 @@ export const list = async (ctx) => {
             .skip((page - 1) * 10)
             .exec();
         const postCount = await Post.countDocuments().exec();
+        // 마지막 페이지라는 리퀘스트 파라미터를 제공 = 10개의 게시물씩 페이지로 감싸기 때문에 내림처리하며 개수를 센다.
         ctx.set('Last-Page', Math.ceil(postCount / 10));
         ctx.body = posts;
     } catch (e) {
