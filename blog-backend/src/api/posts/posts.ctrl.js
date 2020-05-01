@@ -113,6 +113,7 @@ export const update = async (ctx) => {
     const { id } = ctx.params;
     const schema = Joi.object().keys({
         // write에서 사용한 schema와 비슷하지만 required가 없습니다.
+        // required만 빼고 대부분의 joi 체크구문이 같아서 공통으로 빼려고 했지만 제대로 작동하지 않았습니다.
         title: Joi.string(), // requred가 있으면 필수 항목
         body: Joi.string(),
         tags: Joi.array().items(Joi.string()), // 문자열로 이루어진 배열
