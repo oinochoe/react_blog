@@ -6,6 +6,12 @@ const UserSchema = new Schema({
     hashedPassword: String,
 });
 
+UserSchema.methods.serialzie = function () {
+    const data = this.toJSON();
+    delete data.hashedPassword;
+    return data;
+};
+
 UserSchema.methods.setPassword = async function (password) {
     const hash = await bcrypt.hash(password, 10);
     this.hashedPassword = hash;
