@@ -16,14 +16,14 @@ UserSchema.methods.checkPassword = async function (password) {
     return result; // true / false
 };
 
-UserSchema.statics.findByUsername = function (username) {
-    return this.findOne({ username });
-};
-
-UserSchema.methods.serialzie = function () {
+UserSchema.methods.serialize = function () {
     const data = this.toJSON();
     delete data.hashedPassword;
     return data;
+};
+
+UserSchema.statics.findByUsername = function (username) {
+    return this.findOne({ username });
 };
 
 const User = mongoose.model('User', UserSchema);

@@ -13,7 +13,7 @@ export const register = async (ctx) => {
     // Request Body 검증
     const schema = Joi.object().keys({
         username: Joi.string().alphanum().min(3).max(20).required(),
-        passwrod: Joi.string().required(),
+        password: Joi.string().required(),
     });
     const result = Joi.validate(ctx.request.body, schema);
     if (result.error) {
