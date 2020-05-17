@@ -89,9 +89,20 @@ export const login = async (ctx) => {
         ctx.throw(500, error);
     }
 };
+
+/*
+    GET /api/auth/check
+*/
 export const check = async (ctx) => {
-    // 로그인 상태 확인
+    const { user } = ctx.state;
+    if (!user) {
+        // not logged in
+        ctx.status = 401; // Unauthroized
+        return;
+    }
+    ctx.body = user;
 };
+
 export const logout = async (ctx) => {
     // 로그아웃
 };
