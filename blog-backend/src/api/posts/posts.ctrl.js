@@ -5,13 +5,24 @@ import Joi from 'joi';
 // 미들웨어 작성
 const { ObjectId } = mongoose.Types;
 
-export const checkObjectId = (ctx, next) => {
+export const getPostById = async (ctx, next) => {
     const { id } = ctx.params;
     if (!ObjectId.isValid(id)) {
         ctx.status = 400; // Bad request
         return;
     }
-    return next();
+    try {
+        const post = await Post.findById(id);
+        // 포스트가 존재하지 않을 때
+        if (!post) {
+            ctx.status = 404; // Not Found
+            return;
+        }
+        ctx.state.post = post;
+        return next();
+    } catch (error) {
+        ctx.throw(500, error);
+    }
 };
 
 /*
