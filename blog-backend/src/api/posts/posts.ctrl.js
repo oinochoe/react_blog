@@ -5,6 +5,7 @@ import Joi from 'joi';
 // 미들웨어 작성
 const { ObjectId } = mongoose.Types;
 
+// getPostById
 export const getPostById = async (ctx, next) => {
     const { id } = ctx.params;
     if (!ObjectId.isValid(id)) {
@@ -23,6 +24,16 @@ export const getPostById = async (ctx, next) => {
     } catch (error) {
         ctx.throw(500, error);
     }
+};
+
+// checkOwnPost
+export const checkOwnPost = (ctx, next) => {
+    const { user, post } = ctx.state;
+    if (post.user_id.toString() !== user._id) {
+        ctx.status = 403;
+        return;
+    }
+    return next();
 };
 
 /*
