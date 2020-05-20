@@ -76,7 +76,7 @@ export const write = async (ctx) => {
 };
 
 /*
- * GET /api/posts
+ * GET /api/posts?username=&tag=&page=
  */
 export const list = async (ctx) => {
     // query는 문자열이기 때문에 숫자로 변환해주어야 합니다.
@@ -88,14 +88,21 @@ export const list = async (ctx) => {
         return;
     }
 
+    const { tag, username } = ctx.query;
+    // tag, username 값이 유효하면 객체 안에 넣고, 그렇지 않다면 넣지 않음
+    const query = {
+        ...(username ? { 'user.username': username } : {}),
+        ...(tag ? { tags: tag } : {}),
+    };
+
     try {
-        const posts = await Post.find()
+        const posts = await Post.find(query)
             .sort({ _id: -1 })
             .limit(10)
             .skip((page - 1) * 10)
             .lean()
             .exec();
-        const postCount = await Post.countDocuments().exec();
+        const postCount = await Post.countDocuments(query).exec();
         // 마지막 페이지라는 리퀘스트 파라미터를 제공 = 10개의 게시물씩 페이지로 감싸기 때문에 내림처리하며 개수를 센다.
         ctx.set('Last-Page', Math.ceil(postCount / 10));
         ctx.body = posts.map((post) => ({
