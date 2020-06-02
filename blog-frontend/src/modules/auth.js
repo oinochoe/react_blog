@@ -9,7 +9,7 @@ export const changeField = createAction(
     ({ form, key, value }) => ({
         form, // register, login
         key, // username, password, passwordConfirm
-        value, // 실제 빠꾸려는 값
+        value,
     }),
 );
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form); // register
