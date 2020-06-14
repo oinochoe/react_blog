@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const ResponsiveBlock = styled.div`
     padding-left: 1rem;
     padding-right: 1rem;
-    width: 10244px;
+    width: 1024px;
     margin: 0 auto; /* 중앙 정렬 */
 
     /* 브라우저 크기에 따라 가로 크기 변경 */
