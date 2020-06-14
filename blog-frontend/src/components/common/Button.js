@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 
-const StyledButton = styled.button`
+const buttonStyle = css`
     border: none;
     border-radius: 4px;
     font-size: 1rem;
@@ -21,12 +21,11 @@ const StyledButton = styled.button`
     ${(props) =>
         props.fullWidth &&
         css`
-            width: 100%;
             padding-top: 0.75rem;
+            width: 100%;
             padding-bottom: 0.75rem;
             font-size: 1.125rem;
         `}
-
     ${(props) =>
         props.cyan &&
         css`
@@ -37,17 +36,20 @@ const StyledButton = styled.button`
         `}
 `;
 
-const Button = ({ to, history, ...rest }) => {
-    const onClick = (e) => {
-        // to가 있다면 to 로 페이지 이동
-        if (to) {
-            history.push(to);
-        }
-        if (rest.onClick) {
-            rest.onClick(e);
-        }
-    };
-    return <StyledButton {...rest} onClick={onClick} />;
+const StyledButton = styled.button`
+    ${buttonStyle}
+`;
+
+const StyledLink = styled(Link)`
+    ${buttonStyle}
+`;
+
+const Button = (props) => {
+    return props.to ? (
+        <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
+    ) : (
+        <StyledButton {...props} />
+    );
 };
 
-export default withRouter(Button);
+export default Button;
