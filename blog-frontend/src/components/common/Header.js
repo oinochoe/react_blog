@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Responsive from './Responsive';
 import Button from './Button';
@@ -41,9 +42,11 @@ const Header = () => {
         <>
             <HeaderBlock>
                 <Wrapper>
-                    <div className="logo">Reacters</div>
+                    <Link to="/" className="logo">
+                        Reacters
+                    </Link>
                     <div className="right">
-                        <Button>로그인</Button>
+                        <Button to="login">로그인</Button>
                     </div>
                 </Wrapper>
             </HeaderBlock>
