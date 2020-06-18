@@ -109,7 +109,7 @@ const TagBox = () => {
     return (
         <TagBoxBlock>
             <h4>태그</h4>
-            <TagForm onsubmit={onSubmit}>
+            <TagForm onSubmit={onSubmit}>
                 <input
                     placeholder="태그를 입력하세요"
                     value={input}
