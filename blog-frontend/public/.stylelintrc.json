@@ -1,0 +1,5 @@
+{
+    "rules": {
+        "selector-descendant-combinator-no-non-space": true
+    }
+}
