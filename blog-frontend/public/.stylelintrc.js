@@ -70,6 +70,7 @@ module.exports = {
         'media-feature-parentheses-space-inside': null,
         'comment-whitespace-inside': null,
         'declaration-block-trailing-semicolon': null,
+        // css issue rule
         'selector-descendant-combinator-no-non-space': true,
         'function-calc-no-unspaced-operator': null,
 
