@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../components/common/Button';
-import HeaderContainer from '../components/common/HeaderContainer';
+import HeaderContainer from '../containers/common/HeaderContainer';
 
 const PostListPage = () => {
     return (
